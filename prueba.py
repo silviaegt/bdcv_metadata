@@ -5,11 +5,15 @@ Created on Tue Jan 31 21:28:21 2017
 @author: skar
 """
 
-from csv import reader
+from csv import reader,writer
 from collections import defaultdict,Counter
 from Fingerprint import Fingerprint
 
-
+"""
+* Nota: El archivo que se lee debe ser un archivo de texto separado por
+        tabuladores,de esta forma se evita problemas con las comas dentro 
+        del texto
+"""
 doc = list(reader(open('términos_aceptados.txt','r',encoding="iso-8859-1"), delimiter='\t'))
 elements = set()
 cnter = Counter()
@@ -31,13 +35,32 @@ for w in elements:
     keys[fp.key(w)].add(count)
     count +=1
 
+report = []
+maxE = 0
 for w in keys:
-    num = 0
-    for k in keys[w]:
-        tmp = cnter[elements[k]]
-        print(elements[k])
-        num += tmp
-    if(num > 1):
-        print("total: "+str(num))
+    csize = len(keys[w])
+    if csize > maxE:
+        maxE = csize
+    if(csize > 1):
+        tmp = []
+        tmp.append(str(csize))
+        for k in keys[w]:
+            tmp.append(elements[k])
+            tmp.append(str(cnter[elements[k]]))
+        report.append(tmp)
 
-#Nota, pensar cómo usar k medias
+report.sort()
+report.reverse()
+
+header = ["Tamaño del cluster"]
+for i in range(0,maxE):
+    header.append("Palabra")
+    header.append("Número de apariciones")
+
+file = open("reporte.csv",'w',encoding="iso-8859-1")
+wf = writer(file)
+wf.writerow(header)
+for i in report:
+    wf.writerow(i)
+    print(i)
+file.close()
