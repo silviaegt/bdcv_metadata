@@ -17,6 +17,14 @@ from Fingerprint import Fingerprint
 doc = list(reader(open('términos_aceptados.txt','r',encoding="iso-8859-1"), delimiter='\t'))
 elements = set()
 cnter = Counter()
+"""
+doc = lista de palabras
+i = palabra
+j = letra?
+elements = ??
+keys = un diccionario que se va a llenar con instancias únicas (set) de fingerprint
+dudas: qué hace fp.key?
+"""
 
 for i in doc:
     for j in i:
