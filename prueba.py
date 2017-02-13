@@ -5,7 +5,7 @@ Created on Tue Jan 31 21:28:21 2017
 @author: skar
 """
 
-from csv import reader,writer
+from csv import reader,writer,excel
 from collections import defaultdict,Counter
 from Fingerprint import Fingerprint
 
@@ -18,12 +18,12 @@ doc = list(reader(open('términos_aceptados.txt','r',encoding="iso-8859-1"), del
 elements = set()
 cnter = Counter()
 """
-doc = lista de palabras
-i = palabra
-j = letra?
-elements = ??
-keys = un diccionario que se va a llenar con instancias únicas (set) de fingerprint
-dudas: qué hace fp.key?
+doc = Todo el documento
+i = Renglon
+j = Palabra
+elements = Términos aceptados eliminando dúplicados
+keys = un diccionario cuyas llaves son cálculadas en fp.key() y en el cual
+se van a hacer los clusters de los términos aceptados
 """
 
 for i in doc:
@@ -66,9 +66,12 @@ for i in range(0,maxE):
     header.append("Número de apariciones")
 
 file = open("reporte.csv",'w',encoding="iso-8859-1")
-wf = writer(file)
+dialect = excel
+dialect.lineterminator='\n'
+wf = writer(file,dialect)
+wf.writerow(["Total de detecciones:",str(len(report))])
 wf.writerow(header)
+wf.writerows(report)
 for i in report:
-    wf.writerow(i)
     print(i)
 file.close()
