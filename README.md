@@ -1,2 +1,2 @@
 # bdcv_metadata
-Subject Heading from the Daniel Cosío Villegas Library
+Cleaning Subject Headings from the Daniel Cosío Villegas Library
