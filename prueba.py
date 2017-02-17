@@ -22,7 +22,7 @@ doc = Todo el documento
 i = Renglon
 j = Palabra
 elements = Términos aceptados eliminando dúplicados
-keys = un diccionario cuyas llaves son cálculadas en fp.key() y en el cual
+keys = un diccionario cuyas llaves son calculadas en fp.key() y en el cual
 se van a hacer los clusters de los términos aceptados
 """
 
