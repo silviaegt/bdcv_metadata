@@ -37,7 +37,11 @@ class Omanager:
                 st = self.regex.sub(" ",st)
                 tmp = list(set(st.split()))
                 for k in tmp:
-                    if(not self.dic.spell(k)):
+                    if k in self.detected:
+                        self.cnter[k]+=1
+                        value = self.correctWord[k]
+                        stTmp.replace(k,value[0])
+                    elif(not self.dic.spell(k)):
                         self.detected.add(k)
                         self.cnter[k]+=1
                         print(k+" no se encuentra en el diccionario")
@@ -50,10 +54,6 @@ class Omanager:
                         self.dic.add(word)
                         self.correctWord[k]=[word]
                         stTmp.replace(k,word)
-                    elif k in self.detected:
-                        self.cnter[k]+=1
-                        value = self.correctWord[k]
-                        stTmp.replace(k,value[0])
                 lTmp.append(stTmp)
             self.cluster[i]=set(lTmp)
     
