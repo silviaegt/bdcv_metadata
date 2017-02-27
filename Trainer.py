@@ -34,5 +34,5 @@ file.close()
 
 """
 TODO: 
-    lograr que con pinkle se guarde el cluster
+    lograr que con pickle se guarde el cluster
 """
