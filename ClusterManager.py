@@ -6,7 +6,6 @@ Created on Thu Feb 23 21:03:33 2017
 """
 
 from collections import defaultdict,Counter
-from json import dump
 
 class ClusterManager:
     
@@ -81,7 +80,3 @@ class ClusterManager:
                 print("Opción no válida")
             print("\n")            
     
-    def toFile(self):
-        file = open("diccionary",'w')
-        dump(self.clusters,file)
-        file.close()

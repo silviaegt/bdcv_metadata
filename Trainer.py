@@ -9,6 +9,7 @@ from csv import reader,writer,excel
 from ClusterManager import ClusterManager
 from Fingerprint import Fingerprint
 from Omanager import Omanager
+import clusterToFile as c2f
 
 doc = list(reader(open('términos_aceptados.txt','r',encoding="iso-8859-1"), delimiter='\t'))
 file = open("ClusterReport.csv",'w',encoding="iso-8859-1")
@@ -22,7 +23,6 @@ clusterM = ClusterManager()
 clusterM.makeClusters(doc,fp)
 clusterM.makeClusterReport(wf)
 clusterM.refineCluster()
-#clusterM.toFile()
 file.close()
 
 file = open("ortReport.csv",'w',encoding="iso-8859-1")
@@ -32,7 +32,14 @@ om.check()
 om.makeReport(wf)
 file.close()
 
-"""
-TODO: 
-    lograr que con pinkle se guarde el cluster
-"""
+cluster = om.getCluster()
+c2f.writeCluster("cluster.p",cluster)
+
+del cluster
+del doc
+del file
+del dialect
+del wf
+del fp
+del om
+del clusterM

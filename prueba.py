@@ -87,7 +87,7 @@ for i in range(0,maxE):
 file = open("reporte.csv",'w',encoding="iso-8859-1")
 dialect = excel
 dialect.lineterminator='\n'
-wf = writer(file,dialect)
+wf = writer(file,dialect,delimiter='\t')
 wf.writerow(["Total de detecciones:",str(len(report))])
 wf.writerow(header)
 wf.writerows(report)
