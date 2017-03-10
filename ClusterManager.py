@@ -6,6 +6,7 @@ Created on Thu Feb 23 21:03:33 2017
 """
 
 from collections import defaultdict,Counter
+from Levenshtein import Levenshtein as distance
 import hunspell
 import re
 
@@ -88,7 +89,21 @@ class ClusterManager:
             print(type(inst))
             print(inst.args)
             print(inst)
-            
+
+    def nearestNeighborhood(self,tol):
+        keys = list(self.clusters.keys())
+        flg = 1
+        tmp = defaultdict(set)
+        for i in keys:
+            for k in list(self.clusters[i]):
+                tmp[i].add(k)
+            for j in keys[flg:]:
+                if distance(i,j)<=tol:
+                    for k in list(self.clusters[j]):
+                        tmp[i].add(k)
+            flg+=1
+        self.clusters=tmp
+   
     def refineCluster(self):
         for i in self.keys:
             tmp = list(self.clusters[i])
