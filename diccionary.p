@@ -1,1 +1,0 @@
-{"de educacion en grupo la trabajo": 
