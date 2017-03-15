@@ -38,33 +38,25 @@ def aditional(st):
 
 print("Iniciando proceso, esto puede tardar varios minutos...")
 print("Cargando base de datos")
-doc = list(reader(open("términos_aceptados.txt",'r',encoding="iso-8859-1"), delimiter='\t'))
+doc = list(reader(open("términos_aceptados.csv",'r',encoding="iso-8859-1"), delimiter=','))
 dialect = excel
 dialect.lineterminator='\n'
 
-wE = aditional("Desea ingresar una lista de palabras a exceptuar? (S/N) ")
 cE = aditional("Desea ingresar una lista de términos a considerar? (S/N) ")
 
 fp = Fingerprint()
-print("Calculando clusters y revisando ortografía")
+print("Calculando clusters")
 file = open("ClusterReport.csv",'w',encoding="iso-8859-1")
 wf = writer(file,dialect)
-clusterM = ClusterManager(cE,wE)
+clusterM = ClusterManager(cE)
 clusterM.makeClusters(doc,fp)
 print("Generando reporte de clusters")
 clusterM.makeClusterReport(wf)
 clusterM.refineCluster()
 file.close()
 
-file = open("ortReport.csv",'w',encoding="iso-8859-1")
-wf = writer(file,dialect)
-print("Generando reporte de ortografía")
-clusterM.makeOrtReport(wf)
-file.close()
-
 c2f.writeCluster("cluster.p",clusterM.getClusters())
 del doc
-del wE
 del cE
 op = input("Desea checar posibles coincidencias?(S/N) ")
 op = op.lower()
@@ -76,7 +68,7 @@ if op.__eq__("s"):
     print("Generando reporte")
     clusterM.makeClusterReport(wf)
     file.close()
-c2f.writeCluster("clusterN.p",clusterM.getClusters())
+    c2f.writeCluster("clusterN.p",clusterM.getClusters())
 
 #Limpiamos memoria
 
