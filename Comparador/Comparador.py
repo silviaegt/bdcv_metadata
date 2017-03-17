@@ -10,7 +10,7 @@ import os
 def getLists(msg):
     car = input(msg)
     l = set(os.listdir("./"+car))
-    l.remove("errors.log")
+    l.remove("Errors.csv")
     return l,car
 
 def getTerms(filename):
@@ -28,8 +28,10 @@ def compare(l1,car1,l2,car2):
             for k in dif:
                 file.write(k+"\n")
             file.close()
-
-os.mkdir("comparación")
+try:
+    os.mkdir("comparación")
+except:
+    pass
 l1,car1 = getLists("Ingrese el nombre de la carpeta con las tablas a comparar: ")
 l2,car2 = getLists("Ingrese el nombre de la carpeta con las tablas de referencia: ")
 print("Comparando "+car1+" vs "+car2)
