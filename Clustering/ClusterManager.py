@@ -35,6 +35,12 @@ class ClusterManager:
                     self.cnter[j] +=1
                     self.clusters[method.key(j)].add(j)
     
+    def makeClusters2(self,doc,method):
+        for j in doc:
+            if len(j)>0:
+                self.cnter[j] +=1
+                self.clusters[method.key(j)].add(j)
+    
     def makeClusterReport(self,wf):
         try:
             report = []
