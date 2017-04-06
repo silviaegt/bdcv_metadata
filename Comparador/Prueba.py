@@ -17,9 +17,9 @@ from csv import writer,excel
 l1,car1 = getLists("Ingrese el nombre de la carpeta con las tablas: ")
 
 try:
-    os.mkdir(car1+"/Clusters")
-    os.mkdir(car1+"/Clusters/Reportes")
-    os.mkdir(car1+"/Clusters/Clusters")
+    os.mkdir(car1+"/Clusters_cont")
+    os.mkdir(car1+"/Clusters_cont/Reportes")
+    os.mkdir(car1+"/Clusters_cont/Clusters")
 except:
     pass
 
@@ -30,25 +30,25 @@ print("Calculando clusters")
 for i in l1:
     tmp = i.replace(".txt",'')
     print("Procesando actualmente: "+tmp)
-    file = open(car1+"/Clusters/Reportes/ClusterReport_"+tmp+".csv",'w',encoding="iso-8859-1")
+    file = open(car1+"/Clusters_cont/clusters_cont_reporte/ClusterReport_"+tmp+".csv",'w',encoding="iso-8859-1")
     wf = writer(file,dialect)
     clusterM = ClusterManager(set())
     clusterM.makeClusters2(getTerms(car1+"/Tablas/"+i),fp)
     clusterM.makeClusterReport(wf)
     file.close()
     
-    c2f.writeCluster(car1+"/Clusters/Clusters/cluster_"+tmp+".p",clusterM.getClusters())
+    c2f.writeCluster(car1+"/Clusters_cont/clusters_cont_local/cluster_"+tmp+".p",clusterM.getClusters())
     op = input("Desea checar posibles coincidencias?(S/N) ")
     op = op.lower()
     if op.__eq__("s"):
         op = input("Ingrese la tolerancia: ")
         clusterM.nearestNeighborhood(int(op))
-        file = open(car1+"/Clusters/Reportes/nearReport_"+tmp+".csv",'w',encoding="iso-8859-1")
+        file = open(car1+"/Clusters_cont/clusters_cont_reporte/nearReport_"+tmp+".csv",'w',encoding="iso-8859-1")
         wf = writer(file,dialect)
         print("Generando reporte")
         clusterM.makeClusterReport(wf)
         file.close()
-        c2f.writeCluster(car1+"/Clusters/Clusters/clusterN_"+tmp+".p",clusterM.getClusters())
+        c2f.writeCluster(car1+"/Clusters_cont/clusters_cont_local/clusterN_"+tmp+".p",clusterM.getClusters())
 
 #Limpiamos memoria
 
