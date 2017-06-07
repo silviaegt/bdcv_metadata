@@ -14,7 +14,7 @@ def getText(title):
     tmp = tmp.replace("}","")
     return tmp
 
-def getTables(doc,keys,titles,clas,cClas,n,route):
+def getTables(doc,keys,titles,clas,cClas,c001,n,route):
     regex = re.compile("[^\w]")
     errors = Counter()
     tables = defaultdict(list)
@@ -25,9 +25,9 @@ def getTables(doc,keys,titles,clas,cClas,n,route):
     dialect.lineterminator='\n'
     file = open(route+"errors_subs.csv",'w',encoding="iso-8859-1")
     wf = writer(file,dialect)
-    wf.writerow(["Título","Dewey","Error"])
+    wf.writerow(["Título","C001","Error"])
     for i in doc[1:]:
-        txt = getText(str(cClas[i[0]]))
+        #txt = getText(str(cClas[i[0]]))
         tmp = getText(str(titles[i[0]]))
         for j in range(n,len(i),2):
             if len(i[j])>0:
@@ -36,14 +36,14 @@ def getTables(doc,keys,titles,clas,cClas,n,route):
                     errors[key]+=1
                     print("Error en el registro: "+i[0])
                     print("Título: "+tmp)
-                    print("Dewey: "+txt)
+                    print("C001: "+c001[i[0]])
                     print("\""+key+"\""+" no es válida\n")
-                    wf.writerow([tmp,txt,key])
+                    wf.writerow([tmp,c001[i[0]],key])
                 elif not key.__eq__("2"):
                     tables[key].append(i[j])
                     reg2[str(i[0])].append(key)
                     reg3[getText(str(clas[i[0]]))].append(i[j])
-                    sTmp=i[j]+"_"+key+"_"+txt[:2]
+                    sTmp=key+"_"+i[j]#+"_"+txt[:2]
                     forNet[str(i[0])].add(sTmp)
     file.close()
     return tables,reg2,reg3,forNet
@@ -156,7 +156,8 @@ def getKey(dic,value):
             return i
     return "xxx"
 
-def makeReport(route,sh,cnt=None,dicc=None,clas=None):
+def makeReport(route,sh,cnt,dicc,clas):
+    print("Generando: "+route+"\n")
     dialect = excel
     dialect.lineterminator='\n'
     file = open(route,'w',encoding="iso-8859-1")

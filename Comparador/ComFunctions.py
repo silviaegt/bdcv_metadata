@@ -5,15 +5,19 @@ Created on Thu Mar 23 20:37:30 2017
 @author: Antonio
 """
 import os
+from csv import reader
 
 def getLists(msg):
     car = input(msg)
-    l = set(os.listdir("./"+car+"/Tablas"))
+    l = set(os.listdir("./"+car+"/Tablas_count"))
     return l,car
 
 def getTerms(filename):
-    file = open(filename,'r',encoding="iso-8859-1").read()
-    return set(file.split("\n"))
+    file = list(reader(open(filename,'r',encoding="iso-8859-1"), delimiter=','))
+    dic = {}
+    for i in file:
+        dic[i[1]]=i[0]
+    return dic
 
 def compare(l1,car1,l2,car2):
     for i in list(l1):

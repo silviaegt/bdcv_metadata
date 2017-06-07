@@ -18,8 +18,8 @@ l1,car1 = getLists("Ingrese el nombre de la carpeta con las tablas: ")
 
 try:
     os.mkdir(car1+"/Clusters_cont")
-    os.mkdir(car1+"/Clusters_cont/Reportes")
-    os.mkdir(car1+"/Clusters_cont/Clusters")
+    os.mkdir(car1+"/Clusters_cont/clusters_cont_reporte")
+    os.mkdir(car1+"/Clusters_cont/clusters_cont_local")
 except:
     pass
 
@@ -28,12 +28,12 @@ dialect.lineterminator='\n'
 fp = Fingerprint()
 print("Calculando clusters")
 for i in l1:
-    tmp = i.replace(".txt",'')
+    tmp = i.replace(".csv",'')
     print("Procesando actualmente: "+tmp)
     file = open(car1+"/Clusters_cont/clusters_cont_reporte/ClusterReport_"+tmp+".csv",'w',encoding="iso-8859-1")
     wf = writer(file,dialect)
     clusterM = ClusterManager(set())
-    clusterM.makeClusters2(getTerms(car1+"/Tablas/"+i),fp)
+    clusterM.makeClusters2(getTerms(car1+"/Tablas_count/"+i),fp)
     clusterM.makeClusterReport(wf)
     file.close()
     

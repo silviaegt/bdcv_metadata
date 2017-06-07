@@ -36,6 +36,7 @@ with open('words.csv', "r", encoding="latin1") as fin:
         #print(type(st))
 
 onevstwo = list(zip(pt, st))
+#print(onevstwo)
 onevsthree = list(zip(pt, tt))
 onevsfour = list(zip(pt, qt))
 #print(len(onevsfour))
@@ -49,18 +50,19 @@ dels = []
 addsdic = defaultdict(list)
 deldic = defaultdict(list)
 
-for a, b in sumof:
+for a, b in onevstwo:
     if len(b) != 0:
         #print('{} => {}'.format(a, b))
         for i, s in enumerate(difflib.ndiff(b, a)):
             if s[0] == ' ':
                 continue
             elif s[0] == '-':
+                print(i, s)
                 #adds = []
                 #print(u'Delete "{}" from position {}'.format(s[-1], i))
                 dels.append(s[-1])
                 deldic[(b,a)].append(s[-1])
-                #print(len(adds))
+                print(len(adds))
             elif s[0] == '+':
                 #print(u'Add "{}" to position {}'.format(s[-1], i))
                 adds.append(s[-1])
@@ -92,6 +94,7 @@ diffonecount = Counter(diffone).most_common()
 
 def getWwithE (string, dictio):
     """
+
     Permite ver los términos en los que se encuentra un determinado error y las palabras más comunes dentro de los términos correctos y los incorrectos
     :param string:
     :param dictio:

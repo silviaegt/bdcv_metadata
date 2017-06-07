@@ -47,6 +47,8 @@ class JElement:
     
     def setDewey(self,dew):
         if re.fullmatch("\d+\.?\d*",dew):
+            tmp = dew.split(".")
+            dew = tmp[0]
             while len(dew)<3:
                 dew = "0"+dew
             self.dewey["cent"] = dew[0]+"00"

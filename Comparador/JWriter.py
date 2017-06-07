@@ -32,20 +32,25 @@ class JWriter:
         regex = re.compile("[^\w]")
         tmp = list(reader(open(cont,'r',encoding=self.encode), delimiter=','))
         file = open("errors_subs.csv",'w',encoding=self.encode)
+        file2 = open("JWriter.log",'w',encoding=self.encode)
         wf = writer(file,self.dialect)
         wf.writerow(["Título","Dewey","Error"])
         for i in tmp[1:]:
             for j in range(n,len(i),2):
                 if len(i[j])>0:
                     key = regex.sub('',i[j-1])
-                    if not key in self.labels and not key in self.exc:
-                        it = self.items[int(i[0])-1]
-                        self.printErrors(i[0],it.getTitle(),it.getFullDewey(),key)
-                        wf.writerow([it.getTitle(),it.getFullDewey(),key])
-                    elif not key in self.exc:
-                        it = self.items.pop(int(i[0])-1)
-                        it.addTopic(key,i[j])
-                        self.items.insert(int(i[0])-1,it)
+                    try:
+                        it = self.items[i[0]]
+                        if not key in self.labels and not key in self.exc:
+                            self.printErrors(i[0],it.getTitle(),it.getFullDewey(),key)
+                            wf.writerow([it.getTitle(),it.getFullDewey(),key])
+                        elif not key in self.exc:
+                            it.addTopic(key,i[j])
+                            self.items[i[0]] = it
+                    except:
+                        file2.write("No se encontró el registro: "+i[0]+" en el archivo de títulos\n")
+        file.close()
+        file2.close()
     
     def initDict(self,dewey):
         tmp = list(reader(open(dewey,'r',encoding=self.encode), delimiter=','))
@@ -56,21 +61,21 @@ class JWriter:
 
     def initList(self,titles):
         tmp = list(reader(open(titles,'r',encoding=self.encode), delimiter=','))
-        l = []
+        l = {}
         for i in tmp[1:]:
             nReg = i[0]
-            if not nReg in self.reg:
-                self.reg.add(nReg)
-                jElement = JElement(i[5],self.dic)
-                jElement.setDewey(i[3])
-                l.insert(int(nReg)-1,jElement)
+            jElement = JElement(i[5],self.dic)
+            jElement.setDewey(i[2])
+            l[nReg] = jElement
         return l
                 
     def initObj(self):
         l = []
         cont = 0
-        for it in self.items:
+        for k in self.items:
+            it = self.items[k]
             l.append({"book_"+str(cont):{"title":it.getTitle(),"dewey":it.getDewey(),"cont":it.getTopics()}})
+            cont+=1
         return {"books":l}
             
     def printErrors(self,reg,title,dewey,key):
