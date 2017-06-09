@@ -18,7 +18,9 @@ import threading
 import os
 
 
-etiquetas = set(["a","b","v","x","y","z","d","c","p","t","l"])
+etiquetas = set(["a","b","c","d","e","f","g","h","j","k","l","m","n","o",
+                 "p","q","r","s","t","u","v","x","y","z","0","2","3","4",
+                 "6","8"])
 doc = list(reader(open("dewey.csv",'r',encoding="iso-8859-1"), delimiter=','))
 dic = getDict(doc)
 del doc
