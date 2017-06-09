@@ -47,6 +47,11 @@ except:
 n = int(input("Ingrese la columna desde la que empiezan los datos: "))+1
 tmp = "./"+name+"/Subs_reporte/"
 print("Generando tablas")
+
+#tables: item (valor del subcampo de temas, ie "México) y frecuencia
+#reg2: frecuencia de las etiquetas (a, b, etc)
+#reg3: frecuencia por clasificación Dewey
+#forNet: diccionario con los valores para crear las dos tablas de la red
 tables,reg2,reg3,forNet = getTables(doc,etiquetas,titles,clas,cClas,c001,n,tmp)
 for i in tables:
     toFile(list(tables[i]),"./"+name+"/Tablas/"+i)
