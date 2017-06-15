@@ -43,7 +43,7 @@ def getTables(doc,keys,titles,clas,cClas,c001,n,route):
                     tables[key].append(i[j])
                     reg2[str(i[0])].append(key)
                     reg3[getText(str(clas[i[0]]))].append(i[j])
-                    sTmp=key+"_"+i[j]#+"_"+txt[:2]
+                    sTmp=key+"||"+i[j]#+"_"+txt[:2]
                     forNet[str(i[0])].add(sTmp)
     file.close()
     return tables,reg2,reg3,forNet
@@ -156,7 +156,7 @@ def getKey(dic,value):
             return i
     return "xxx"
 
-def makeReport(route,sh,cnt,dicc,clas):
+def makeReport(route,sh,cnt,dicc,clas,c001):
     print("Generando: "+route+"\n")
     dialect = excel
     dialect.lineterminator='\n'
@@ -167,7 +167,7 @@ def makeReport(route,sh,cnt,dicc,clas):
         dire = route.replace("cont_por_clas","dewey_errors")
         file2 = open(dire,'w',encoding="iso-8859-1")
         wf2 = writer(file2,dialect)
-        wf2.writerow(["Núm_reg","Error"]+getHeader(cnt)[5:])
+        wf2.writerow(["Num_reg","c001","Error"]+getHeader(cnt)[5:])
     for i in sh:
         l = getValues(list(sh[i]))
         if cnt == True:
@@ -177,11 +177,16 @@ def makeReport(route,sh,cnt,dicc,clas):
                     wf.writerow(["","","","",i]+l[0][0:-1]+getCounts(l[1]))
                 else:
                     reg = getKey(clas,i)
-                    wf2.writerow([reg,i]+l[0][0:-1]+getCounts(l[1]))
+                    wf2.writerow([reg,c001[reg],i]+l[0][0:-1]+getCounts(l[1]))
             else:
                 val = [dewey[0]+"00","0"+dewey[1]+"0","00"+dewey[2],dewey]
                 wf.writerow(val+[i]+l[0][0:-1]+getCounts(l[1]))
         else:
+            prom = float(l[0].pop(2))
+            prom *= float(l[0][1])
+            prom = prom/float(cnt[i])
+            prom = str(prom)
+            l[0].insert(2,prom)
             wf.writerow([i,str(cnt[i])]+l[0]+getCounts(l[1]))
             dire = re.sub("Subs_reporte/.*","Tablas_count/",route)
             file2 = open(dire+i+".csv",'w',encoding="iso-8859-1")

@@ -24,7 +24,7 @@ def getCounts(forNet,dic):
                 if not tmp[k] in index:
                     index[tmp[k]] = str(ind)
                     ind += 1
-                cnt[index[tmp[j]]+"_"+index[tmp[k]]] += 1
+                cnt[index[tmp[j]]+"||"+index[tmp[k]]] += 1
     return cnt,index
 
 def makeFiles(route,cnt,index,dic):
@@ -32,21 +32,25 @@ def makeFiles(route,cnt,index,dic):
     dialect.lineterminator='\n'
     file = open(route+"Nodes.csv",'w',encoding="iso-8859-1")
     wf = writer(file,dialect)
-    wf.writerow(["id","data","type"])
+    wf.writerow(["id","Nodes","type"])
     for i in index:
+        tmp2 = []
         tmp = str(i)
-        tmp = tmp.split("_")
+        tmp = tmp.split("||")
         tmp.reverse()
-        wf.writerow([index[i]]+tmp)
+        for j in tmp:
+            if len(j)>0:
+                tmp2.append(j)
+        wf.writerow([index[i]]+tmp2)
     file.close()
     
-    file = open(route+"Relations.csv",'w',encoding="iso-8859-1")
+    file = open(route+"Edges.csv",'w',encoding="iso-8859-1")
     wf = writer(file,dialect)
-    wf.writerow(["Source","Target","Weight"])
+    wf.writerow(["Source","Target","Weight","Type"])
     for i in cnt:
         try:
-            tmp = i.split("_")
-            l = [tmp[0],tmp[1],str(cnt[i])]
+            tmp = i.split("||")
+            l = [tmp[0],tmp[1],str(cnt[i]),"undirected"]
             wf.writerow(l)
         except:
             pass

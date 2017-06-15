@@ -53,8 +53,8 @@ for i in tables:
 
 cnt = keyCount(reg2)
 print("Generando reportes")
-t1 = ("./"+name+"/Subs_reporte/subs_reporte_gral.csv",tables,cnt,None,None,)
-t2 = ("./"+name+"/Subs_reporte/cont_por_clas.csv",reg3,True,dic,clas,)
+t1 = ("./"+name+"/Subs_reporte/subs_reporte_gral.csv",tables,cnt,None,None,None,)
+t2 = ("./"+name+"/Subs_reporte/cont_por_clas.csv",reg3,True,dic,clas,c001,)
 srg = threading.Thread(target=makeReport,args=t1)
 srg.setDaemon(True)
 srg.start()
