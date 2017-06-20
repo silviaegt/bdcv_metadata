@@ -2,7 +2,7 @@
 """
 Created on Wed Jun  7 10:52:39 2017
 
-@author: Antonio
+@author: Antonio y Silvia
 """
 from difflib import ndiff
 from collections import defaultdict,Counter
@@ -75,13 +75,14 @@ def getWwithE (string, dictio,vals):
             incorrecto.append(termstuple[0])
             v1 = vals[termstuple[1]]
             v2 = vals[termstuple[0]]
-            print("correcto %s [%s] || error %s [%s]" % (termstuple[1],v1, termstuple[0],v2))
-            corr_incorr[termstuple[1]] = termstuple[0]
+            #print("correcto %s [%s] || error %s [%s]" % (termstuple[0],v2, termstuple[1],v1))
+            #corr_incorr[termstuple[0]] = termstuple[1]
+            res = print(termstuple[0].strip(),"\t",v2,"\t",termstuple[1].strip(),"\t",v1,"\n")
     correct_string = ' '.join(correcto).split()
     wrong_string = ' '.join(incorrecto).split()
     #print("Palabras más comunes en térm. correctos: ", Counter(correct_string).most_common())
     #print("Palabras más comunes en térm. errados: ", Counter(wrong_string).most_common())
-    return corr_incorr
+    return res
 
 ##cambiar por la ruta donde se tenga el archivo de cluster
 di = "/subs_completos/Clusters_cont/clusters_cont_reporte/ClusterReport_a.csv"
