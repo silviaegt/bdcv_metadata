@@ -7,9 +7,9 @@ Created on Thu Mar 23 20:37:30 2017
 import os
 from csv import reader
 
-def getLists(msg):
+def getLists(msg,rte):
     car = input(msg)
-    l = set(os.listdir("./"+car+"/Tablas_count"))
+    l = set(os.listdir("./"+car+rte))
     return l,car
 
 def getTerms(filename):

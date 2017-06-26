@@ -48,7 +48,7 @@ n = int(input("Ingrese la columna desde la que empiezan los datos: "))+1
 tmp = "./"+name+"/Subs_reporte/"
 print("Generando tablas")
 
-#tables: item (valor del subcampo de temas, ie "México) y frecuencia
+#tables: item (valor del subcampo de temas, ie "México) únicas
 #reg2: frecuencia de las etiquetas (a, b, etc)
 #reg3: frecuencia por clasificación Dewey
 #forNet: diccionario con los valores para crear las dos tablas de la red
@@ -63,8 +63,6 @@ t2 = ("./"+name+"/Subs_reporte/cont_por_clas.csv",reg3,True,dic,clas,c001,)
 srg = threading.Thread(target=makeReport,args=t1)
 srg.setDaemon(True)
 srg.start()
-#makeReport("./"+name+"/Subs_reporte/subs_reporte_gral.csv",tables,cnt=cnt)
-#makeReport("./"+name+"/Subs_reporte/cont_por_clas.csv",reg3,cnt=True,dicc=dic,clas=clas)
 cpc = threading.Thread(target=makeReport,args=t2)
 cpc.setDaemon(True)
 cpc.start()

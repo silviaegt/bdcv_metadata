@@ -10,7 +10,6 @@ import os
 import threading
 sys.path.append("../Clustering")
 from ClusterManager import ClusterManager
-import clusterToFile as c2f
 from Fingerprint import Fingerprint
 from ComFunctions import getLists,getTerms
 from csv import writer,excel
@@ -27,8 +26,6 @@ def hilo(i):
     clusterM.makeClusters2(getTerms(car1+"/Tablas_count/"+i),fp)
     clusterM.makeClusterReport(wf)
     file.close()
-    
-    c2f.writeCluster(car1+"/Clusters_cont/clusters_cont_local/cluster_"+tmp+".p",clusterM.getClusters())
     #op = input("Desea checar posibles coincidencias en "+i+"?(S/N) ")
     op = "s"
     #op = op.lower()
@@ -41,7 +38,6 @@ def hilo(i):
         print("Generando reporte")
         clusterM.makeClusterReport(wf)
         file.close()
-        c2f.writeCluster(car1+"/Clusters_cont/clusters_cont_local/clusterN_"+tmp+".p",clusterM.getClusters())
     
     del dialect
     del fp
@@ -49,12 +45,11 @@ def hilo(i):
     del wf
     del clusterM
 
-l1,car1 = getLists("Ingrese el nombre de la carpeta con las tablas: ")
+l1,car1 = getLists("Ingrese el nombre de la carpeta con las tablas: ","/Tablas_count")
 
 try:
     os.mkdir(car1+"/Clusters_cont")
     os.mkdir(car1+"/Clusters_cont/clusters_cont_reporte")
-    os.mkdir(car1+"/Clusters_cont/clusters_cont_local")
 except:
     pass
 

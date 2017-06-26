@@ -49,9 +49,10 @@ def makeFiles(route,cnt,index,dic):
     wf.writerow(["Source","Target","Weight","Type"])
     for i in cnt:
         try:
-            tmp = i.split("||")
-            l = [tmp[0],tmp[1],str(cnt[i]),"undirected"]
-            wf.writerow(l)
+            if(cnt[i]>5):
+                tmp = i.split("||")
+                l = [tmp[0],tmp[1],str(cnt[i]),"undirected"]
+                wf.writerow(l)
         except:
             pass
     file.close()
