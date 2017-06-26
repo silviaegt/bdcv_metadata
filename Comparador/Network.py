@@ -32,7 +32,7 @@ def makeFiles(route,cnt,index,dic):
     dialect.lineterminator='\n'
     file = open(route+"Nodes.csv",'w',encoding="iso-8859-1")
     wf = writer(file,dialect)
-    wf.writerow(["id","Nodes","type"])
+    wf.writerow(["id","item","type"])
     for i in index:
         tmp2 = []
         tmp = str(i)
