@@ -56,6 +56,7 @@ tables,reg2,reg3,forNet = getTables(doc,etiquetas,titles,clas,cClas,c001,n,tmp)
 for i in tables:
     toFile(list(tables[i]),"./"+name+"/Tablas/"+i)
 
+#Aquí se generan los reportes
 cnt = keyCount(reg2)
 print("Generando reportes")
 t1 = ("./"+name+"/Subs_reporte/subs_reporte_gral.csv",tables,cnt,None,None,None,)
@@ -72,5 +73,6 @@ print("\nGenerando archivos para la red\n")
 cnt,index = getCounts(forNet,dic)
 makeFiles("./"+name+"/Network/",cnt,index,dic)
 
+#Funciones para esperar los hilos
 srg.join()
 cpc.join()
