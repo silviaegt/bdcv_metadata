@@ -49,7 +49,8 @@ def makeFiles(route,cnt,index,dic):
     wf.writerow(["Source","Target","Weight","Type"])
     for i in cnt:
         try:
-            if(cnt[i]>5):
+            #aquí se puede cambiar el número de relaciones
+            if(cnt[i]>=10):
                 tmp = i.split("||")
                 l = [tmp[0],tmp[1],str(cnt[i]),"undirected"]
                 wf.writerow(l)
