@@ -4,12 +4,20 @@ Created on Thu Apr 27 19:01:14 2017
 
 @author: Antonio
 """
-
 from csv import writer,excel
 from collections import Counter
 
-
-def getCounts(forNet,dic):
+"""
+* Función que se encarga de generar un indice para almacenar el id de cada tema
+* diferente y el conteo de ocurrencias
+* Recibe:
+* forNet: Diccionario en el que se agrupa los temas y etiquetas por registro
+*         sin tomar en cuenta los elementos repetidos dentro del mismo registro
+* Regresa:
+*    cnt: Diccionario donde se tiene el conteo de las ocurrencias conjuntas
+*    index: indice con el id de cada tema
+"""
+def getCounts(forNet):
     cnt = Counter()
     index = {}
     ind = 0
@@ -24,15 +32,24 @@ def getCounts(forNet,dic):
                 if not tmp[k] in index:
                     index[tmp[k]] = str(ind)
                     ind += 1
-                cnt[index[tmp[j]]+"||"+index[tmp[k]]] += 1
+                if int(index[tmp[j]]) < int(index[tmp[k]]):
+                    cnt[index[tmp[j]]+"||"+index[tmp[k]]] += 1
+                else:
+                    cnt[index[tmp[k]]+"||"+index[tmp[j]]] += 1
     return cnt,index
-
-def makeFiles(route,cnt,index,dic):
+"""
+* Función que se encarga de generar los archivos para la red
+* Recibe:
+*    route: dirección en la que se almacenarán los archivos
+*    cnt: Diccionario donde se tiene el conteo de las ocurrencias conjuntas
+*    index: indice con el id de cada tema  
+"""
+def makeFiles(route,cnt,index):
     dialect = excel
     dialect.lineterminator='\n'
     file = open(route+"Nodes.csv",'w',encoding="iso-8859-1")
     wf = writer(file,dialect)
-    wf.writerow(["id","item","type"])
+    wf.writerow(["id","label","type"])
     for i in index:
         tmp2 = []
         tmp = str(i)
@@ -49,8 +66,7 @@ def makeFiles(route,cnt,index,dic):
     wf.writerow(["Source","Target","Weight","Type"])
     for i in cnt:
         try:
-            #aquí se puede cambiar el número de relaciones
-            if(cnt[i]>=10):
+            if(cnt[i]>50):
                 tmp = i.split("||")
                 l = [tmp[0],tmp[1],str(cnt[i]),"undirected"]
                 wf.writerow(l)
@@ -58,5 +74,3 @@ def makeFiles(route,cnt,index,dic):
             pass
     file.close()
             
-    
-    

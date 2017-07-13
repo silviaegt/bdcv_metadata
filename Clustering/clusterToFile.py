@@ -6,7 +6,12 @@ Created on Sun Feb 26 23:36:05 2017
 """
 from collections import defaultdict
 
-
+"""
+* Función que se encarga de escribir un cluster a un archivo de texto plano
+* Recibe:
+*    name: nombre del carchivo en el que será almacenado el clúster
+*    cluster: cluster a almacenar
+"""
 def writeCluster(name,cluster):
     file = open(name,'w',encoding="iso-8859-1")
     for i in cluster:
@@ -15,7 +20,13 @@ def writeCluster(name,cluster):
             file.write("\t"+j)
         file.write("\n")
     file.close()
-
+"""
+* Función que se encarga de leer un cluster de un archivo de texto plano
+* Recibe:
+*    name: nombre del carchivo en el que será almacenado el clúster
+* Regresa:
+*    dic: Cluster leído
+"""
 def readCluster(name):
     file = open(name,'r',encoding="iso-8859-1")
     doc = file.read()

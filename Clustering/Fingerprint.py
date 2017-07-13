@@ -8,11 +8,23 @@ Created on Fri Jan 27 21:27:52 2017
 import re
 from StandarCode import normalize
 
+"""
+* Clase que se encarga de ejecutar el algoritmo de fingerprint simple
+* para generar llaves de agrupación
+"""
 class Fingerprint:
-    
+    """
+    * Constructor de la clase, no requere argumentos
+    """
     def __init__(self):
         self.regex = re.compile("[^\w\s]")
-        
+    """
+    * Método que se encarga de generar la llave de agrupación
+    * Recibe:
+    *    s: string al que se le busca obtener la llave
+    * Regresa:
+    *    s: llave correspondiente al string original
+    """    
     def key(self,s):
         s = s.strip()
         s = s.lower()
@@ -28,13 +40,26 @@ class Fingerprint:
         return s.rstrip()
     
     
-
+"""
+* Clase que se encarga de ejecutar el algoritmo de ngram
+* para generar llaves de agrupación
+"""
 class NGram:
-    
+    """
+    * Constructor de la clase
+    * Recibe:
+    *    tam: valor de n gramas que se buscará
+    """
     def __init__(self,tam):
         self.regex = re.compile("[^\w]")
         self.n = tam
-    
+    """
+    * Método que se encarga de generar la llave de agrupación
+    * Recibe:
+    *    s: string al que se le busca obtener la llave
+    * Regresa:
+    *    s: llave correspondiente al string original
+    """  
     def key(self,s):
         s = s.lower()
         s = s.replace("_",'')
@@ -44,7 +69,14 @@ class NGram:
         for i in nGrams:
             s+=normalize(i)
         return s
-    
+    """
+    * Método que se encarga de obtener lo ngramas diferentes dentro del string
+    * Recibe:
+    *    s: string al que se le busca obtener los ngrams
+    *    n: total de ngramas que se busca
+    * Regresa:
+    *    nGrams: conjunto de ngrams sin repetidos
+    """
     def nGramSplit(self,s,n):
         nGrams = set()
         if n>=len(s):

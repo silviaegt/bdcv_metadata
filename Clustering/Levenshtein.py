@@ -6,7 +6,15 @@ Created on Thu Mar  9 19:44:26 2017
 """
 
 import numpy
-
+"""
+* Función que se encarga de evaluar la distancia entre dos cadenas
+* mediante el algoritmo de Levenshtein
+* Recibe:
+*    s: primer cadena de interes
+*    t: segunda cadena de interes
+* Regresa:
+*    distancia entre ambas cadenas
+"""
 def Levenshtein(s,t):
     m = len(s)+1
     n = len(t)+1

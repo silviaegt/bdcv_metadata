@@ -7,6 +7,9 @@ Created on Wed Jun  7 23:08:59 2017
 
 from csv import reader,writer,excel
 
+"""
+* Programa que se encarga de unir dos archivos csv
+"""
 doc1 = list(reader(open("temas_1.csv",'r',encoding="iso-8859-1"), delimiter=','))
 doc2 = list(reader(open("temas_2.csv",'r',encoding="iso-8859-1"), delimiter=','))
 dialect = excel
