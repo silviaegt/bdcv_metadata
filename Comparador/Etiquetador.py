@@ -2,7 +2,8 @@
 """
 Created on Tue Mar 14 16:32:28 2017
 @author: Antonio
-Las bibliotecas externas 
+Las bibliotecas externas son csv, threading y os
+La versión de Python usada es 3.6.0
 """
 from csv import reader
 from LabFunctions import getDict
