@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 """
 Created on Tue Mar 14 20:20:08 2017
-
 @author: Antonio
+Las bibliotecas externas es os
+La versión de Python usada es 3.6.0
 """
 
 import os
