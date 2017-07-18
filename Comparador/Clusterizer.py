@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 """
 Created on Thu Mar 23 20:16:24 2017
-
 @author: Antonio
+Las bibliotecas externas son csv, threading, os y sys
+La versión de Python usada es 3.6.0
 """
 
 import os
