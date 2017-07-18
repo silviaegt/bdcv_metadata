@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """
 Created on Tue Mar 14 16:32:28 2017
-
 @author: Antonio
+Las bibliotecas externas 
 """
 from csv import reader
 from LabFunctions import getDict
@@ -77,14 +77,14 @@ tmp = "./"+name+"/Subs_reporte/"
 print("Generando tablas")
 """
 * Se obtienen los diccionarios para generar los reportes y la red
-* tables: Diccionario en el que se agrupa todos los temas por etiquetas sin 
-*         importar que esten repetidos o no
+* tables: Diccionario en el que se agrupan todos los temas por etiquetas
+*         (x, z, y, etc) sin importar que estén repetidos o no
 * reg2:   Diccionario en el que se agrupan todas las etiquetas por registro
 *         sin importar si las etiquetas se repiten o no
 * reg3:   Diccionario en el que se agrupan todos los temas por clasificación
- *        Dewey sin importar si se repiten o no
-* forNet: Diccionario en el que se agrupa los temas y etiquetas por registro
-*         sin tomar en cuenta los elementos repetidos dentro del mismo registro
+ *        Dewey (de los primeros 3 dígitos) sin importar si se repiten o no
+* forNet: Diccionario en el que se agrupan los temas y etiquetas por registro
+*         (es decir, por libro en el catálogo) únicos
 """
 tables,reg2,reg3,forNet = getTables(doc,etiquetas,titles,clas,c001,n,tmp)
 """
