@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 """
 Created on Thu Mar 23 20:37:30 2017
-
 @author: Antonio
+Las bibliotecas externas son csv y os
+La versión de Python usada es 3.6.0
 """
 from csv import reader
 import os
