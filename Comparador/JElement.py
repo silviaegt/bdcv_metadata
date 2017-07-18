@@ -2,7 +2,7 @@
 """
 Created on Thu May  4 16:04:25 2017
 @author: Antonio
-Las bibliotecas externas es re
+La biblioteca externas es re
 """
 
 import re
