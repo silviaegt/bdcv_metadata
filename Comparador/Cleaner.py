@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 """
 Created on Sat Jun 24 19:47:33 2017
-
 @author: Antonio
+Las bibliotecas externas son csv
+La versión de Python usada es 3.6.0
 """
 
 from ComFunctions import getLists
