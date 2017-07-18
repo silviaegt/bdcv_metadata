@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """
 Created on Thu May  4 15:25:59 2017
-
 @author: Antonio
+Las bibliotecas externas son json, re, collections, y csv
 """
 
 from collections import defaultdict
