@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 """
 Created on Wed Jun  7 10:52:39 2017
-
 @author: Antonio y Silvia
+Las bibliotecas externas son csv, collections y difflib
+La versión de Python usada es 3.6.0
 """
 from difflib import ndiff
 from collections import defaultdict,Counter
