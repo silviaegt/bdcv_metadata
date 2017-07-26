@@ -176,7 +176,9 @@ def getTables(doc,keys,titles,clas,c001,n,route):
     file = open(route+"errors_subs.csv",'w',encoding="iso-8859-1")
     wf = writer(file,dialect)
     wf.writerow(["Título","C001","Error"])
+    ind = 0
     for i in doc[1:]:
+        ind += 1
         tmp = getText(str(titles[i[0]]))
         for j in range(n,len(i),2):
             if len(i[j])>0:
@@ -193,7 +195,7 @@ def getTables(doc,keys,titles,clas,c001,n,route):
                     reg2[str(i[0])].append(key)
                     reg3[getText(str(clas[i[0]]))].append(i[j])
                     sTmp=key+"||"+i[j]#+"_"+txt[:2]
-                    forNet[str(i[0])].add(sTmp)
+                    forNet[str(i[0])+"_"+str(ind)].add(sTmp)
     file.close()
     return tables,reg2,reg3,forNet
 

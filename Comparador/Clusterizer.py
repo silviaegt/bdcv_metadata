@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 """
 Created on Thu Mar 23 20:16:24 2017
+
 @author: Antonio
-Las bibliotecas externas son csv, threading, os y sys
-La versión de Python usada es 3.6.0
 """
 
 import os
@@ -31,7 +30,7 @@ def hilo(i,op,tol):
     fp = Fingerprint()
     tmp = i.replace(".csv",'')
     print("\nSe inicia el proceso en: "+tmp)
-    file = open(car1+"/Clusters_cont/clusters_cont_reporte/ClusterReport_"+tmp+".csv",'w',encoding="iso-8859-1")
+    file = open(car1+"/Clusters_cont/ClusterReport_"+tmp+".csv",'w',encoding="iso-8859-1")
     wf = writer(file,dialect)
     clusterM = ClusterManager(set())
     clusterM.makeClusters2(getTerms(car1+"/Tablas_count/"+i),fp)
@@ -40,7 +39,7 @@ def hilo(i,op,tol):
     print("\nClusterReport_"+tmp+" terminado satisfactoriamente")
     if op.__eq__("s"):
         clusterM.nearestNeighborhood(tol)
-        file = open(car1+"/Clusters_cont/clusters_cont_reporte/nearReport_"+tmp+".csv",'w',encoding="iso-8859-1")
+        file = open(car1+"/Clusters_cont/nearReport_"+tmp+".csv",'w',encoding="iso-8859-1")
         wf = writer(file,dialect)
         print("\nnearReport_"+tmp+" terminado satisfactoriamente")
         clusterM.makeClusterReport(wf)
@@ -62,11 +61,14 @@ l1,car1 = getLists("Ingrese el nombre de la carpeta con las tablas: ","/Tablas_c
 """
 try:
     os.mkdir(car1+"/Clusters_cont")
-    os.mkdir(car1+"/Clusters_cont/clusters_cont_reporte")
 except:
     pass
 """
 * Se pregunta si se quiere hacer vecinos más cercanos y se inicializa la tolerancia
+* descomentar en caso de que se desee hacer pruebas
+"""
+op = 'n'
+tol = 0
 """
 op = input("Desea checar vecinos más cercanos? (S/N) ")
 op = op.lower()
@@ -74,6 +76,7 @@ tol = 0
 if op.__eq__("s"):
     tol = int(input("Ingrese la tolerancia: "))
 print("Calculando clusters")
+"""
 """
 * se genera una lista de hilos en la que se irán almacenando los hilos de
 * ejecución en segundo plano y se inicializan dichos hilos

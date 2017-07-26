@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 """
 Created on Tue Mar 14 16:32:28 2017
+
 @author: Antonio
-Las bibliotecas externas son csv, threading y os
-La versión de Python usada es 3.6.0
 """
 from csv import reader
 from LabFunctions import getDict
@@ -26,7 +25,8 @@ etiquetas = set(["a","b","c","d","e","f","g","h","j","k","l","m","n","o",
 * Se procede a cargar el archivo dewey.csv, en caso de que no se encuentre
 * en el mismo directorio que este código se deberá poner la ruta correspondiente
 """
-doc = list(reader(open("dewey.csv",'r',encoding="iso-8859-1"), delimiter=','))
+file = input("ingrese el nombre del archivo con el código dewey: ")
+doc = list(reader(open(file,'r',encoding="iso-8859-1"), delimiter=','))
 """
 * Se genera diccionario para la traducción del codígo dewey
 * La función getDict está definida en LabFunctions.py
@@ -38,7 +38,8 @@ del doc
 * posteriormente se eliminan las listas en las que se cargaron los documentos
 * para evitar saturar la RAM
 """
-doc1 = list(reader(open("c001_1.csv",'r',encoding="iso-8859-1"), delimiter=','))
+file = input("ingrese el nombre del archivo con el 001: ")
+doc1 = list(reader(open(file,'r',encoding="iso-8859-1"), delimiter=','))
 doc2 = list(reader(open("c001_2.csv",'r',encoding="iso-8859-1"), delimiter=','))
 c001 = getDict(doc1+doc2)
 del doc1
@@ -78,14 +79,14 @@ tmp = "./"+name+"/Subs_reporte/"
 print("Generando tablas")
 """
 * Se obtienen los diccionarios para generar los reportes y la red
-* tables: Diccionario en el que se agrupan todos los temas por etiquetas
-*         (x, z, y, etc) sin importar que estén repetidos o no
+* tables: Diccionario en el que se agrupa todos los temas por etiquetas sin 
+*         importar que estén repetidos o no
 * reg2:   Diccionario en el que se agrupan todas las etiquetas por registro
 *         sin importar si las etiquetas se repiten o no
 * reg3:   Diccionario en el que se agrupan todos los temas por clasificación
- *        Dewey (de los primeros 3 dígitos) sin importar si se repiten o no
-* forNet: Diccionario en el que se agrupan los temas y etiquetas por registro
-*         (es decir, por libro en el catálogo) únicos
+ *        Dewey sin importar si se repiten o no
+* forNet: Diccionario en el que se agrupa los temas y etiquetas por registro
+*         sin tomar en cuenta los elementos repetidos dentro del mismo registro
 """
 tables,reg2,reg3,forNet = getTables(doc,etiquetas,titles,clas,c001,n,tmp)
 """

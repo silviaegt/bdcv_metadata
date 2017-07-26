@@ -6,6 +6,7 @@ Created on Thu Apr 27 19:01:14 2017
 """
 from csv import writer,excel
 from collections import Counter
+from collections import defaultdict
 
 """
 * Función que se encarga de generar un indice para almacenar el id de cada tema
@@ -21,7 +22,9 @@ def getCounts(forNet):
     cnt = Counter()
     index = {}
     ind = 0
+    dic = defaultdict(set)
     for i in forNet:
+        flg = i.split("_")
         tmp = list(forNet[i])
         tmp.sort()
         for j in range(len(tmp)-1):
@@ -33,9 +36,12 @@ def getCounts(forNet):
                     index[tmp[k]] = str(ind)
                     ind += 1
                 if int(index[tmp[j]]) < int(index[tmp[k]]):
-                    cnt[index[tmp[j]]+"||"+index[tmp[k]]] += 1
+                    rel = index[tmp[j]]+"||"+index[tmp[k]] 
                 else:
-                    cnt[index[tmp[k]]+"||"+index[tmp[j]]] += 1
+                    rel = index[tmp[k]]+"||"+index[tmp[j]]
+                if not rel in dic[flg[0]]:
+                    cnt[rel] += 1
+                    dic[flg[0]].add(rel)
     return cnt,index
 """
 * Función que se encarga de generar los archivos para la red
@@ -66,7 +72,7 @@ def makeFiles(route,cnt,index):
     wf.writerow(["Source","Target","Weight","Type"])
     for i in cnt:
         try:
-            if(cnt[i]>50):
+            if(cnt[i]>0): #ojo, aquí se determina la relación mínima para la red
                 tmp = i.split("||")
                 l = [tmp[0],tmp[1],str(cnt[i]),"undirected"]
                 wf.writerow(l)

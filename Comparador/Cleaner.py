@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
 """
 Created on Sat Jun 24 19:47:33 2017
+
 @author: Antonio
-Las bibliotecas externas son csv
-La versión de Python usada es 3.6.0
 """
 
 from ComFunctions import getLists
 from csv import reader,writer,excel
+import sys
+sys.path.append("../Clustering")
+from Fingerprint import Fingerprint
 
 """
 * Función que se encarga de reemplazar las columnas 3,5,7, etc de los reportes
@@ -19,15 +21,15 @@ from csv import reader,writer,excel
 * Regresa:
 *    file: cadena con los cambios del clúster hechos
 """
-def clean(file,cluster):
+def getDict(dic,cluster):
+    fp = Fingerprint()
     print("Procesando "+cluster)
     doc = list(reader(open(cluster,'r',encoding="iso-8859-1"), delimiter=','))
     if len(doc)==0:
-        return file
+        return dic
     for i in doc[2:]:
-        for j in range(3,len(i),2):
-            file = file.replace(i[j],i[1])
-    return file
+        dic[fp.key(i[1])] = i[1]
+    return dic.copy()
 """
 * Función que se encarga de escribir un archivo nuevo eliminando los subs cuyas
 * etiquetas no sean válidas
@@ -39,7 +41,8 @@ def clean(file,cluster):
 * Genera:
 *    Archivo "limpio" sin etiquetas que no sean válidas
 """
-def write(doc,dire,labs,n):
+def write(doc,dire,labs,dic,n):
+    fp = Fingerprint()
     dialect = excel
     dialect.lineterminator='\n'
     file = open(dire+"_clean.csv",'w',encoding="iso-8859-1")
@@ -51,8 +54,12 @@ def write(doc,dire,labs,n):
             if len(i[j])>0:
                 key = i[j-1]
                 if key in labs:
-                   row.append(key)
-                   row.append(i[j])
+                    if fp.key(i[j]) in dic:
+                        row.append(key)
+                        row.append(dic[fp.key(i[j])])
+                    else:
+                        row.append(key)
+                        row.append(i[j])
         wf.writerow(row)
     file.close()
 
@@ -75,7 +82,7 @@ etiquetas = set(["a","b","c","d","e","f","g","h","j","k","l","m","n","o",
 l,dire = getLists("ingrese el nombre del directorio ",route)
 n = int(input("Ingrese la columna desde donde inician los datos "))+1
 op = input("Seleccione una opción:\nFingerprint: 1\nVecinos más cercanos: 2\n> ")
-file = open(dire+".csv",'r',encoding="iso-8859-1").read()
+dic = {}
 
 """
 * Cargamos los archivos con los clusters para hacer la limpieza que se 
@@ -83,19 +90,12 @@ file = open(dire+".csv",'r',encoding="iso-8859-1").read()
 """
 for i in l:
     if i.startswith(menu[op]):
-        file = clean(file,dire+route+i)
-"""
-* Generamos el primer archivo limpio, en este sólo se cambió el contenido de 
-* los clusters
-"""
-file2 = open(dire+"_"+name[op]+"_cln.csv","w",encoding="iso-8859-1")
-file2.write(file)
-file2.close()
+        dic = getDict(dic,dire+route+i)
 
 """
 * posteriormente cargamos el archivo anterior y lo utlilizamos para hacer la
 * limpieza de etiquetas no válidas
 """
-doc = list(reader(open(dire+"_"+name[op]+"_cln.csv",'r',encoding="iso-8859-1"), delimiter=','))
-write(doc,dire+"_"+name[op],etiquetas,n)
+doc = list(reader(open(dire+".csv",'r',encoding="iso-8859-1"), delimiter=','))
+write(doc,dire+"_"+name[op],etiquetas,dic,n)
 
