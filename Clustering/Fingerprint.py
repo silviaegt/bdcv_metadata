@@ -14,7 +14,7 @@ from StandarCode import normalize
 """
 class Fingerprint:
     """
-    * Constructor de la clase, no requere argumentos
+    * Constructor de la clase, no requiere argumentos
     """
     def __init__(self):
         self.regex = re.compile("[^\w\s]")
