@@ -237,8 +237,7 @@ Primero se procederá a cargar el archivo "Dewey.csv", en caso de que no
 se encuentre en el mismo directorio que este código se deberá poner la
 ruta correspondiente.
 
-![](media/image2.png){width="6.022916666666666in"
-height="0.18611111111111112in"}
+![](media/image002.png)
 
 El archivo cargado deberá tener la estructura antes mencionada:
 
