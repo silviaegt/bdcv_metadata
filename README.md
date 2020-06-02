@@ -241,7 +241,7 @@ ruta correspondiente.
 
 El archivo cargado deberá tener la estructura antes mencionada:
 
-![](media/image3.png){width="4.197916666666667in"
+![](media/image003.png){width="4.197916666666667in"
 height="4.825694444444444in"}
 
 Posteriormente se genera un diccionario para hacer más ágil la
@@ -249,23 +249,23 @@ traducción del código Dewey y también se borra la lista en la que se
 había cargado el archivo de Dewey para ahorrar el consumo de memoria
 RAM.
 
-![](media/image4.png){width="1.7090277777777778in"
+![](media/image004.png){width="1.7090277777777778in"
 height="0.3486111111111111in"}
 
 Posteriormente se procede a cargar el archivo en el que se encuentra
 almacenado el código C001 de nuestra población
 
-![](media/image5.png){width="6.0in" height="0.20902777777777778in"}
+![](media/image005.png){width="6.0in" height="0.20902777777777778in"}
 
 La información contenida en el archivo es:
 
-![](media/image6.png){width="2.08125in" height="1.0583333333333333in"}
+![](media/image006.png){width="2.08125in" height="1.0583333333333333in"}
 
 Una vez cargado el archivo, procedemos a generar un diccionario de datos
 para que la búsqueda de código C001 de cada registro sea más rápida y se
 borra la lista en la que se cargó originalmente el archivo.
 
-![](media/image7.png){width="1.8840277777777779in"
+![](media/image007.png){width="1.8840277777777779in"
 height="0.3138888888888889in"}
 
 Posteriormente en consola nos aparecerá un mensaje solicitando que le
@@ -273,44 +273,44 @@ ingresemos el nombre del archivo que contiene los títulos y el código
 Dewey de cada registro. En esta ocasión, dicho archivo se llamará
 títulos.csv y su contenido será el siguiente:
 
-![](media/image8.png){width="6.1592300962379705in"
+![](media/image008.png){width="6.1592300962379705in"
 height="0.9418602362204724in"}
 
-![](media/image9.png){width="5.639583333333333in"
+![](media/image009.png){width="5.639583333333333in"
 height="0.3486111111111111in"}
 
-![](media/image10.png){width="5.720833333333333in"
+![](media/image010.png){width="5.720833333333333in"
 height="0.8722222222222222in"}
 
 Posteriormente se nos solicitará que se ingrese el archivo con los subs,
 en este caso el archivo se llama subs.csv y su contenido es el
 siguiente:
 
-![](media/image11.png){width="6.127777777777778in"
+![](media/image011.png){width="6.127777777777778in"
 height="1.6979166666666667in"}
 
-![](media/image12.png){width="5.6625in" height="0.3840277777777778in"}
+![](media/image012.png){width="5.6625in" height="0.3840277777777778in"}
 
-![](media/image13.png){width="3.895138888888889in"
+![](media/image013.png){width="3.895138888888889in"
 height="0.20902777777777778in"}
 
 Y se procederá a obtener un diccionario con de los títulos y la
 clasificación Dewey por registro
 
-![](media/image14.png){width="2.58125in" height="0.18611111111111112in"}
+![](media/image014.png){width="2.58125in" height="0.18611111111111112in"}
 
 Posteriormente se procede a crear el árbol de directorios para tener
 organizada la información, nos aparecerá un mensaje que nos indica que
 se van a generar los directorios.\
 Posteriormente se nos solicitará ingresar la columna desde la que
-empiezan los datos en el archivo de subs, como se puede ver en la imagen
+empiezan los datos en el archivo de subs, como se puede ver en la image0n
 anterior, los datos inician desde la columna 3 (tomar en cuenta que son
 las columnas: 0,1,2,3)
 
-![](media/image15.png){width="5.825694444444444in"
+![](media/image015.png){width="5.825694444444444in"
 height="1.9069444444444446in"}
 
-![](media/image16.png){width="3.9652777777777777in"
+![](media/image016.png){width="3.9652777777777777in"
 height="0.5583333333333333in"}
 
 Y se procederá a generar las tablas que nos permitirán hacer los
@@ -334,28 +334,28 @@ La finalidad de cada una de las tablas es la siguiente:
     por registro sin tomar en cuenta los elementos repetidos dentro del
     mismo registro
 
-![](media/image17.png){width="5.569444444444445in"
+![](media/image017.png){width="5.569444444444445in"
 height="0.18611111111111112in"}
 
-![](media/image18.png){width="2.2090277777777776in"
+![](media/image018.png){width="2.2090277777777776in"
 height="0.8138888888888889in"}
 
 Posteriormente se procede a guardar las tablas de etiquetas obtenidas en
 archivos de texto plano
 
-![](media/image19.png){width="3.9881944444444444in"
+![](media/image019.png){width="3.9881944444444444in"
 height="0.3486111111111111in"}
 
 Y se hace un conteo por etiqueta
 
-![](media/image20.png){width="2.384027777777778in"
+![](media/image020.png){width="2.384027777777778in"
 height="0.32569444444444445in"}
 
 Luego se procede a generar las tuplas de parámetros que serán utilizados
 en los hilos de ejecución alternos del programa, esto con la finalidad
 de que todo el proceso sea lineal y se haga de manera multitarea
 
-![](media/image21.png){width="5.813888888888889in"
+![](media/image021.png){width="5.813888888888889in"
 height="0.3486111111111111in"}
 
 Se inicia el primer hilo de ejecución, y se manda a segundo plano,
@@ -364,26 +364,26 @@ cálculos que se hacen dentro de este hilo, suele ser el más tardado y
 dependiendo de la cantidad de información en la base de datos será su
 duración en tiempo.
 
-![](media/image22.png){width="4.267361111111111in"
+![](media/image022.png){width="4.267361111111111in"
 height="0.4534722222222222in"}
 
 Luego se inicia el segundo hilo de ejecución, en él se genera el reporte
 donde se agrupan los códigos Dewey que se encontraron dentro de la base
 de datos y también se manda a segundo plano
 
-![](media/image23.png){width="4.372222222222222in" height="0.5in"}
+![](media/image023.png){width="4.372222222222222in" height="0.5in"}
 
 En el hilo principal del programa se empiezan a generar los archivos
 necesarios para generar una red mediante Gephi.
 
-![](media/image24.png){width="3.546527777777778in"
+![](media/image024.png){width="3.546527777777778in"
 height="0.48819444444444443in"}
 
 Para evitar que el programa termine antes de que los hilos en segundo
 plano terminen su proceso se ejecuta el método join, dicho método hará
 que el programa espere hasta que los hilos terminen.
 
-![](media/image25.png){width="1.1861111111111111in" height="0.3375in"}
+![](media/image025.png){width="1.1861111111111111in" height="0.3375in"}
 
 Resultados obtenidos
 --------------------
@@ -391,19 +391,19 @@ Resultados obtenidos
 Dentro de la carpeta donde se encuentra todo el código, se generará una
 nueva con el mismo nombre que el archivo que contenía los temas
 
-![](media/image26.png){width="5.2in" height="0.3in"}
+![](media/image026.png){width="5.2in" height="0.3in"}
 
 Y como podemos ver a continuación, el árbol de directorios ya está
 creado
 
-![](media/image27.png){width="5.127777777777778in"
+![](media/image027.png){width="5.127777777777778in"
 height="1.0118055555555556in"}
 
 Primero analizaremos el contenido del directorio Network, dentro de él
 ya se tienen los archivos Edges y Nodes los cuales son necesarios para
 crear la red
 
-![](media/image28.png){width="5.639583333333333in"
+![](media/image028.png){width="5.639583333333333in"
 height="1.1513888888888888in"}
 
 El contenido de dichos archivos se muestra en las siguientes tablas:
@@ -482,46 +482,46 @@ El contenido de dichos archivos se muestra en las siguientes tablas:
 
 Posteriormente analicemos el contenido del directorio Subs\_reporte.
 
-![](media/image29.png){width="5.186111111111111in"
+![](media/image029.png){width="5.186111111111111in"
 height="1.0118055555555556in"}
 
 El contenido del archivo cont\_por\_clas para esta población de muestra
 es:
 
-![](media/image30.png){width="6.1in" height="0.8837204724409449in"}
+![](media/image030.png){width="6.1in" height="0.8837204724409449in"}
 
 El archivo de Dewey\_errors está vació debido a que dentro de la
 población no se agregó ningún dato con error de código Dewey, así que
 nos saltaremos a ver el contenido del archivo errors\_subs en el cual se
 muestra un error por una etiqueta "ab"
 
-![](media/image31.png){width="3.267361111111111in"
+![](media/image031.png){width="3.267361111111111in"
 height="0.44166666666666665in"}
 
 Finalmente, el archivo de subs\_reporte\_gral nos muestra como es el
 comportamiento de las etiquetas
 
-![](media/image32.png){width="6.603098206474191in"
+![](media/image032.png){width="6.603098206474191in"
 height="1.2209306649168854in"}
 
 Ahora procedemos a ver los archivos generados dentro del directorio
 Tablas
 
-![](media/image33.png){width="5.267361111111111in"
+![](media/image033.png){width="5.267361111111111in"
 height="1.4652777777777777in"}
 
 A continuación veremos cómo dentro de cada uno de estos archivos de
 texto plano se encuentran agrupados los temas que entraron dentro de la
 clasificación
 
-![](media/image34.png){width="3.2444444444444445in"
+![](media/image034.png){width="3.2444444444444445in"
 height="1.9770833333333333in"}
 
 En el directorio Tablas\_count también se tienen agrupados los temas por
 etiqueta, con la diferencia que los archivos creados son csv con la
 frecuencia de aparición de cada tema.
 
-![](media/image35.png){width="5.2444444444444445in"
+![](media/image035.png){width="5.2444444444444445in"
 height="1.3604166666666666in"}
 
-![](media/image36.png){width="2.41875in" height="1.7555555555555555in"}
+![](media/image036.png){width="2.41875in" height="1.7555555555555555in"}
