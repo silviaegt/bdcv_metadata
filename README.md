@@ -1,6 +1,6 @@
 # Metadata Cleaning vía Clustering
 Cleaning Library of Congress Subject Headings from the Daniel Cosío Villegas Library
-1. Etiquetador.py
+## Etiquetador.py
 =================
 
 La función de dicho programa es crear documentos que servirán para el
@@ -28,8 +28,7 @@ estructura de directorios:
         la base de datos y su contenido serán los diferentes temas a los
         que fueron asignadas con la frecuencia de cada uno.
 
-    1.  Archivos de entrada
-        -------------------
+### 1.1 Archivos de entrada
 
 A continuación, se irá mencionando los archivos con los que es
 alimentado el programa respetando el orden de entrada. Algunos de estos
@@ -37,8 +36,8 @@ archivos son cargados en automático, mientras que otros son solicitados
 en la terminal. Todos los archivos deben encontrarse en la misma ruta
 que el código.
 
-Dewey.csv
----------
+#### 1.1.2 Dewey.csv
+
 
 La finalidad de este archivo es indicar el significado de cada
 clasificación Dewey y debe estar conformado con las siguientes columnas:
@@ -49,8 +48,7 @@ clasificación Dewey y debe estar conformado con las siguientes columnas:
 
 Este archivo es cargado en automático dentro del programa.
 
-1.1.2 C001.csv
---------------
+#### 1.1.2 C001.csv
 
 La finalidad de este archivo es tener la relación entre cada número de
 registro y su respectivo código C001. La estructura de dicho archivo
@@ -62,8 +60,7 @@ debe estar conformado por las siguientes columnas:
 
 Dicho archivo también es cargado en automático.
 
-1.1.3 Archivo con los títulos de cada libro
--------------------------------------------
+#### 1.1.3 Archivo con los títulos de cada libro
 
 Este archivo será solicitado dentro de la terminal, el formato de dicho
 archivo al igual que el de los demás deberá ser csv. Deberá estar
@@ -82,8 +79,7 @@ organizado de la siguiente manera:
 
 -   Título del libro
 
-1.1.4 Archivo con los subs
---------------------------
+#### 1.1.4 Archivo con los subs
 
 Dentro de este archivo se tendrá el contenido de cada etiqueta y a qué
 libro está asignado. Su estructura es:
@@ -102,17 +98,13 @@ Cabe mencionar que sub y contenido se pueden repetir n veces, siempre y
 cuando se respete el orden sub, contenido. En caso de que no se respete
 ese orden, será detectado en el programa como error.
 
-Estructura de directorios generada
-----------------------------------
+### 1.2 Estructura de directorios generada
 
-1.2.1 Network
--------------
+#### 1.2.1 Network
 
-Dentro de este directorio encontraremos dos archivos necesarios para
-generar la red mediante Gephi.
+Dentro de este directorio encontraremos dos archivos necesarios para generar la red mediante Gephi.
 
-Edges.csv
----------
+##### 1.2.1.1 Edges.csv
 
 Dentro de este archivo se tendrán las relaciones para formar la red
 dentro de Gephi. El archivo arroja la siguiente información:
@@ -125,8 +117,7 @@ dentro de Gephi. El archivo arroja la siguiente información:
 
 -   Type
 
-    1.   Nodes.csv
-        ---------
+##### 1.2.1.2 Nodes.csv
 
 En este archivo se tendrá cada uno de los elementos que conformarán la
 red, y están contenidos de la siguiente manera:
@@ -137,14 +128,11 @@ red, y están contenidos de la siguiente manera:
 
 -   Type
 
-1.2.2 Subs\_reporte
--------------------
+#### 1.2.2 Subs\_reporte
 
 En este directorio se generan los reportes "cont\_por\_clas.csv", "dewey\_errors.csv", "errors\_subs.csv" y "subs\_reporte\_gral.csv". Dichos reportes serán explicados más a detalle a continuación.
------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
- 1.2.2.1 Cont\_por\_clas.csv
----------------------------
+##### 1.2.2.1 Cont\_por\_clas.csv
 
 En este reporte se hace un desglose de las clasificaciones Dewey que
 aparecen dentro del documento. El reporte está formado por:
@@ -168,8 +156,7 @@ Dewey más detallada (por ejemplo "f/327.98073") también se muestra
 dentro de este reporte, con la diferencia que las casillas de centenas,
 decenas y unidades quedarían vacías.
 
-1.2.2.2 Dewey\_errors.csv
--------------------------
+##### 1.2.2.2 Dewey\_errors.csv
 
 La finalidad de este reporte es mostrar aquellos registros en los que no
 se cuente con una clasificación Dewey válida o aún no se le asigne una.
@@ -188,8 +175,7 @@ Los datos mostrados dentro de él son:
 
 -   Los 10 temas más ocurridos con sus frecuencias.
 
-1.2.2.3 Errors\_subs.csv
-------------------------
+##### 1.2.2.3 Errors\_subs.csv
 
 Dentro de dicho reporte se hará el registro de los errores que ocurren
 dentro de la base de datos, cabe mencionar que dicho reporte es el mismo
@@ -207,8 +193,7 @@ la base de datos a un archivo csv, por lo que es posible que dentro de
 dicho reporte aparezcan errores que en la base de datos de producción no
 estén.
 
-1.2.2.4 Subs\_reporte\_gral.csv
--------------------------------
+##### 1.2.2.4 Subs\_reporte\_gral.csv
 
 Un reporte general donde se indiquen los siguientes datos de cada
 etiqueta:
@@ -224,23 +209,20 @@ etiqueta:
 
 -   Los 10 contenidos con mayor ocurrencia y su frecuencia de aparición.
 
-1.2.3 Tablas
-------------
+#### 1.2.3 Tablas
 
 Aquí se generarán archivos de texto plano cuyo nombre corresponderá a
 las etiquetas que fueron encontradas dentro de la base de datos y su
 contenido serán los diferentes temas a los que fueron asignadas.
 
-1.2.4 Tablas\_count
--------------------
+#### 1.2.4 Tablas\_count
 
 Aquí se generarán archivos csv cuyo nombre corresponderá a las etiquetas
 que fueron encontradas dentro de la base de datos y su contenido serán
 los diferentes temas a los que fueron asignadas con la frecuencia de
 cada uno.
 
-1.3 Ejecución del programa
---------------------------
+### 1.3 Ejecución del programa
 
 Para que sea más claro el funcionamiento del programa utilizaremos un
 caso de prueba cuyo contenido sea fácil de visualizar. La ejecución del
@@ -250,9 +232,6 @@ Como se mencionó antes, es necesario que los archivos con los que se
 alimenta el programa deben estar en el mismo directorio en el que se
 encuentra todo el código, en caso contrario será necesario ingresar la
 ruta absoluta de los archivos.
-
-![](media/image1.png){width="5.139583333333333in"
-height="3.6395833333333334in"}
 
 Primero se procederá a cargar el archivo "Dewey.csv", en caso de que no
 se encuentre en el mismo directorio que este código se deberá poner la
