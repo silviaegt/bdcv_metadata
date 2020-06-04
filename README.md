@@ -1,7 +1,7 @@
 # Metadata Cleaning vía Clustering
 Cleaning Library of Congress Subject Headings from the Daniel Cosío Villegas Library
-## Etiquetador.py
-=================
+
+## [Etiquetador.py](https://github.com/silviaegt/bdcv_metadata/blob/master/Comparador/Etiquetador.py)
 
 La función de dicho programa es crear documentos que servirán para el
 estudio de algunos comportamientos dentro de la base de datos. Para
